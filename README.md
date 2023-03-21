@@ -243,3 +243,36 @@ usererror:   startTime
 ```
 SELECT country, COUNT(*), COUNT(city), COUNT(DISTINCT city) FROM usersession GROUP BY country
 ```
+### TOP(field, n)
+Defines that the top <n> results should be returned. The default if <n> is not specified is "1" (i.e. the top value).
+#### Example
+```
+SELECT TOP(name, 20), SUM(duration) FROM useraction GROUP BY name
+```
+If `TOP(<field>, n)` is selected and the results are grouped, but `<field>` is not part of the grouping, the top-n elements are returned as a list within a single field.
+
+#### Example
+```
+SELECT TOP(country, 20), TOP(city, 3), COUNT(*) FROM usersession GROUP BY country
+```
+```
+YEAR(datefield), MONTH(datefield), DAY(datefield), HOUR(datefield), MINUTE(datefield)
+```
+Returns the given element extracted from a datefield.
+```
+YEAR: the 4-digit year
+MONTH: the month-number between 1 and 12
+DAY: the day of the month between 1 and 31
+HOUR: the hour value between 0 and 23
+MINUTE: the minute value between 0 and 59
+```
+You may use this to display data of single user session results (Example 1), but also to create a histogram (Example 2). Additionally, if you are just interested in e.g. the hours of the day when an application was used, but not in the counts, you can use these functions outside a grouping, just as you might use the `TOP` function (Example 3). Or you can apply these functions on other aggregation functions (like `MAX`, `MIN`, `AVG`) in order to convert the result. At the moment, date functions are the only ones that may take another function as parameter (Example 4).
+
+#### Example
+```
+(1) SELECT starttime, DATETIME(starttime), YEAR(starttime), MONTH(starttime), DAY(starttime), HOUR(starttime), MINUTE(starttime) FROM usersession ORDER BY starttime DESC
+(2) SELECT HOUR(starttime) as hourOfDay, COUNT(*) FROM usersession GROUP BY hourOfDay
+(3) SELECT application, HOUR(starttime) AS hoursOfDay FROM useraction GROUP BY application
+(4) SELECT application, DATETIME(MAX(starttime)) AS LastUsedTime FROM useraction GROUP BY application
+```
+    
