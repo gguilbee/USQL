@@ -20,7 +20,7 @@ Dynatrace USQL (User Session Query Language) Documentation
     - [MEDIAN(field)](#medianfield)
     - [PERCENTILE(field, percentileValue)](#percentilefield-percentilevalue)
     - [SUM(field)](#sumfield)
-    - [COUNT(field), COUNT(*), COUNT(DISTINCT field)](#countfield-count)
+    - [COUNT(field), COUNT(*), COUNT(DISTINCT field)](#countfield-count-countdistinct-field)
     - [TOP(field, n)](#topfield-n)
     - [YEAR(datefield), MONTH(datefield), DAY(datefield), HOUR(datefield), MINUTE(datefield)](#yearfield)
     - [DATETIME(datefield [, format [, interval]])](#datetimedatefield)
