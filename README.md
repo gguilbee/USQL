@@ -55,8 +55,8 @@ Selects one or more columns from the given data table or aggregation functions f
 ```
 columns: [DISTINCT|FUNNEL] <column>, <column>, ... | function(<parameter>) | <column> AS <alias> | JSON
 ```
-The modifiers DISTINCT and FUNNEL change the way the columns are interpreted and what values will be allowed for the columns.
-Be aware that the FUNNEL modifier also requires additional parenthesis.
+The modifiers `DISTINCT` and `FUNNEL` change the way the columns are interpreted and what values will be allowed for the columns.
+Be aware that the `FUNNEL` modifier also requires additional parenthesis.
 
 #### Example
 ```
@@ -66,9 +66,9 @@ SELECT country, city, avg(duration) AS average FROM usersession GROUP BY country
 SELECT FUNNEL (useraction.name = "AppStart",useraction.name = "searchJourney", useraction.name = "bookJourney") FROM usersession
 ```
 ### DISTINCT
-The DISTINCT modifier will add implicit grouping.
+The `DISTINCT` modifier will add implicit grouping.
 
-For distinct queries, you cannot use SELECT *,  or the JSON keyword.
+For distinct queries, you cannot use `SELECT *`,  or the `JSON` keyword.
 
 Grouping functions, date/time functions and field names in the columns will be added to the grouping, metric functions will be added ungrouped.
 
@@ -86,7 +86,7 @@ The FUNNEL modifier allows to use a predefined funnel format for the query. It c
 ```
 SELECT FUNNEL (<condition> AS <alias>, <condition>, ...) FROM <table> WHERE <condition>
 ```
-For funnel queries, you cannot use SELECT *, functions, or the keywords like JSON and also no GROUP BY, ORDER BY or LIMIT statements
+For funnel queries, you cannot use `SELECT *`, functions, or the keywords like `JSON` and also no `GROUP BY, ORDER BY or LIMIT` statements
 
 Limitation: Currently, GROUP BY, ORDER BY or LIMIT statements are not allowed in the funnels. These functionality might be added in the future. 
 
