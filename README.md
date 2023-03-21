@@ -222,4 +222,24 @@ Computes the sum of a numerical field.
 ```
 SELECT TOP(name, 20), SUM(duration) FROM useraction GROUP BY name
 ```
+### COUNT(field), COUNT(*), COUNT(DISTINCT field)
+Counts how many rows match.
+`COUNT(*)`: counts the number of matching items.
+`COUNT(<field>)`: counts the number of matching items where <field> is not null.
+`COUNT(DISTINCT <field>)`: counts the number of different values for <field> within the selected items.
 
+Queries that uses `COUNT(DISTINCT <field>)` on extremely high cardinality fields (dateTime fields like usersession.startTime, usersession.endTime, useraction.networkTime) will be rejected from execution.
+
+###### List of fields which are considered extremely high cardinality
+
+usersession: startTime, endTime, replayEnd, clientTimeOffset. duration, replayStart
+useraction:  domContentLoadedTime, startTime, firstPartyBusyTime, documentInteractiveTime, navigationStart, totalBlockingTime, largestContentfulPaint, visuallyCompleteTime, 
+             cdnBusyTime, endTime, domCompleteTime, networkTime, loadEventStart, serverTime, firstInputDelay, responseStart, thirdPartyBusyTime, duration, loadEventEnd, 
+             responseEnd, frontendTime, requestStart 
+userevent:   startTime
+usererror:   startTime
+
+#### Example
+```
+SELECT country, COUNT(*), COUNT(city), COUNT(DISTINCT city) FROM usersession GROUP BY country
+```
