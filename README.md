@@ -8,10 +8,10 @@ Dynatrace captures detailed user session data each time a user interacts with yo
 
 User Sessions Query Language isn't SQL, and Dynatrace doesn't store user session data in a relational database. User Sessions Query Language is a Dynatrace-specific query language, though it does rely on some SQL concepts and the syntax is similar, which makes it easy to get started.
 
-+ useraction.errorCount — Only includes JavaScript errors.
-+ useraction.httpRequestsWithErrors — Only considers server-side errors.
-+ useraction.failedXHRRequests — Only considers failed XHR calls made in your end user's browser.
-+ useraction.failedImages — Will be included with the new requestErrorCount. Read more about [how to best replace existing error counts](https://www.dynatrace.com/news/blog/find-and-analyze-your-web-frontend-errors-faster/#error-count-change) with the new ones.
++ `useraction.errorCount` — Only includes JavaScript errors.
++ `useraction.httpRequestsWithErrors` — Only considers server-side errors.
++ `useraction.failedXHRRequests` — Only considers failed XHR calls made in your end user's browser.
++ `useraction.failedImages` — Will be included with the new `requestErrorCount`. Read more about [how to best replace existing error counts](https://www.dynatrace.com/news/blog/find-and-analyze-your-web-frontend-errors-faster/#error-count-change) with the new ones.
 
 ## Table of contents
 - [Introduction](#Introduction)
