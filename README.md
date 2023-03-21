@@ -142,7 +142,7 @@ If the `LIMIT` clause is missing, a default limit is applied (for the API, this 
 ```
 SELECT city, starttime FROM usersession ORDER BY starttime DESC LIMIT 10
 ```
-### ORDER BY "ordering"
+### ORDER BY &lt;ordering&gt;
 Allows to order the results by columns. Either ascending or descending. If not specified, the order is ascending.
 
 Ordering is by default done b frequency; i.e. the top 5 cities are the most frequently occurring ones. Specifying a field in the "order by" clause will add a sort by value (currently supported for strings, dates and numbers; not for enums).
