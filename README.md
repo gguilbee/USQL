@@ -4,7 +4,7 @@ Dynatrace USQL (User Session Query Language) Documentation
 ## Table of contents
 - [Introduction](#Introduction)
 - [Timeframes](#Timeframes)
-- [Keywords and conventions](#Keywords-and-conventions)
+- [Keywords and Conventions](#Keywords-and-Conventions)
 - Powerup List:
     - [Disclaimer](#Disclaimer)
     - [Tooltips](#Tooltips)
@@ -22,7 +22,7 @@ Therefore we designed the query language to always receive the timeframe as sepa
 
 You can however use the time-fields like starttime and endtime for selecting and for functions, e.g. HOUR(starttime) to find out when during the day most user sessions are starting.
 
-## Keywords and conventions
+## Keywords and Conventions
 
 The following keywords are defined as part of the query language:
 ```
@@ -35,3 +35,18 @@ SUM, MAX, MIN, AVG, MEDIAN, COUNT, YEAR, MONTH, DAY, HOUR, MINUTE, DATETIME, TOP
 ```
 
 Keywords, functions and column names are case insensitive. String-matches in WHERE conditions are done case sensitive.
+
+## Query Language Syntax
+
+A query is built out of the following parts
+```  
+SELECT <columns> FROM <table> WHERE <condition> GROUP BY <grouping> ORDER BY <ordering>
+```
+The only mandatory elements are SELECT <columns> and FROM <table>
+
+### Example
+```
+SELECT ip, browserType, userId, city, AVG(userActionCount) AS "Average user action count", AVG(duration) AS "Average duration", count(*) AS "Sessions", SUM(totalErrorCount) AS "Errors" 
+FROM usersession 
+WHERE ip between '52.179.11.1' and '52.179.11.255'
+```
