@@ -44,13 +44,13 @@ SELECT <columns> FROM <table> WHERE <condition> GROUP BY <grouping> ORDER BY <or
 ```
 The only mandatory elements are SELECT <columns> and FROM <table>
 
-### Example
+#### Example
 ```
 SELECT ip, browserType, userId, city, AVG(userActionCount) AS "Average user action count", AVG(duration) AS "Average duration", count(*) AS "Sessions", SUM(totalErrorCount) AS "Errors" 
 FROM usersession 
 WHERE ip between '52.179.11.1' and '52.179.11.255'
 ```
-### SELECT <columns>
+### SELECT "<columns>"
 Selects one or more columns from the given data table or aggregation functions from the set of supported functions.
 ```
 columns: [DISTINCT|FUNNEL] <column>, <column>, ... | function(<parameter>) | <column> AS <alias> | JSON
@@ -58,7 +58,7 @@ columns: [DISTINCT|FUNNEL] <column>, <column>, ... | function(<parameter>) | <co
 The modifiers DISTINCT and FUNNEL change the way the columns are interpreted and what values will be allowed for the columns.
 Be aware that the FUNNEL modifier also requires additional parenthesis.
 
-### Example
+#### Example
 ```
 SELECT country, city, browserfamily FROM usersession
 SELECT DISTINCT country, city, useractioncount FROM usersession
