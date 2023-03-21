@@ -142,3 +142,40 @@ If the `LIMIT` clause is missing, a default limit is applied (for the API, this 
 ```
 SELECT city, starttime FROM usersession ORDER BY starttime DESC LIMIT 10
 ```
+### ORDER BY "ordering"
+Allows to order the results by columns. Either ascending or descending. If not specified, the order is ascending.
+
+Ordering is by default done b frequency; i.e. the top 5 cities are the most frequently occurring ones. Specifying a field in the "order by" clause will add a sort by value (currently supported for strings, dates and numbers; not for enums).
+
+Ordering by enums or by function values like `AVG`, `SUM`, etc. will just order the returned result, but you are never guaranteed to get the top items for that case. This means if you request the top 5 results by `AVG(duration)`, requesting 10 instead may also add results on the top and not only at the bottom.
+
+*Limitation: You may only specify up to 5 ordering statements/columns.*
+```
+ordering: <column> ASC | <column> DESC | <column>, ...
+```
+#### Example
+```
+SELECT useraction.name, starttime FROM usersession ORDER BY starttime DESC
+```
+Ordering by counts can be achieved by adding the DISTINCT keyword or a GROUP BY clause
+#### Example
+```
+SELECT DISTINCT city, COUNT(*) FROM usersession ORDER BY COUNT(*) DESC
+```
+is equivalent to
+```
+SELECT city, COUNT(*) FROM usersession GROUP BY city ORDER BY COUNT(*) DESC
+```
+Ordering on functions in the select list can be done by stating the column-name only or the alias defined in the SELECT:
+```
+SELECT avg(duration) AS average, count(*) as number, day(startTime) as startDay
+FROM usersession where duration < 2000
+GROUP BY startTime
+```
+or
+```
+SELECT avg(duration) AS average, count(*) as number, day(startTime) as startDay
+FROM usersession where duration < 2000
+GROUP BY startTime
+```
+We will try to support stating `"GROUP BY day(startTime)"` as well.
