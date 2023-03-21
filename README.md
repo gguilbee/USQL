@@ -5,14 +5,14 @@ Dynatrace USQL (User Session Query Language) Documentation
 - [Introduction](#Introduction)
 - [Timeframes](#Timeframes)
 - [Keywords and Conventions](#Keywords-and-Conventions)
-    - [SELECT &lt;columns&gt;](#SELECT-<columns>)
+    - [SELECT &lt;columns&gt;](#select-columns)
     - [DISTINCT](#DISTINCT)
     - [FUNNEL](#FUNNEL)
-    - [FROM <table>]
-    - [WHERE <condition>]
-    - [GROUP BY <grouping>]
-    - [LIMIT <limit>]
-    - [ORDER BY <ordering>]
+    - [FROM &lt;table&gt;](#from-table)
+    - [WHERE &lt;condition&gt;](#where-condition)
+    - [GROUP BY &lt;condition&gt;](#group-by-grouping)
+    - [LIMIT &lt;condition&gt;](#limit-limit)
+    - [ORDER BY &lt;ordering&gt;](#order-by-ordering)
     
 ## Introduction
 
