@@ -100,3 +100,22 @@ SELECT COUNT(*) FROM usersession where useraction.name = "AppStart"
 SELECT COUNT(*) FROM usersession where useraction.name = "AppStart" AND useraction.name = "searchJourney"
 SELECT COUNT(*) FROM usersession where useraction.name = "AppStart" AND useraction.name = "searchJourney" AND useraction.name = "bookJourney"
 ```
+### FROM "table"
+Only one table can be specified. Tables for RUM data are currently usersession and useraction.
+
+#### Example
+```
+SELECT country, city, browserfamily FROM usersession
+SELECT name, starttime, endtime, duration FROM useraction ORDER BY duration DESC
+```
+
+WHERE <condition>
+Multiple conditions can be combined using boolean logic, the right-hand side of conditions can only be a value, so no comparison between two fields is possible.
+"field" always refers to a field, so do not use functions or aliases here.
+
+
+
+condition: (condition AND condition) | (condition OR condition) | field IN(...) | field IS <value> | field IS NULL | field = <value> | field > <value> | field < <value> | field <> <value> | field NOT <value> | field BETWEEN <value> AND <value> | ...
+Example
+SELECT country, city, browserfamily FROM usersession WHERE country = 'Albania' AND screenWidth > 1000
+SELECT top(country, 20), top(city, 20), TOP(duration, 10), avg(duration) AS average FROM usersession WHERE duration BETWEEN 1000 AND 2000
