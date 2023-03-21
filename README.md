@@ -6,6 +6,13 @@ Dynatrace USQL (User Session Query Language) Documentation
 
 Dynatrace captures detailed user session data each time a user interacts with your monitored application. This data includes all user actions and high level performance data. Using either the Dynatrace API or Dynatrace User Sessions Query Language (USQL), you can easily run powerful queries, segmentations, and aggregations on this captured data. To assist you, this topic provides detail about keywords and functions, syntax, working with Real User Monitoring tables, automated queries, and more.
 
+User Sessions Query Language isn't SQL, and Dynatrace doesn't store user session data in a relational database. User Sessions Query Language is a Dynatrace-specific query language, though it does rely on some SQL concepts and the syntax is similar, which makes it easy to get started.
+
++ useraction.errorCount — Only includes JavaScript errors.
++ useraction.httpRequestsWithErrors — Only considers server-side errors.
++ useraction.failedXHRRequests — Only considers failed XHR calls made in your end user's browser.
++ useraction.failedImages — Will be included with the new requestErrorCount. Read more about [how to best replace existing error counts](https://www.dynatrace.com/news/blog/find-and-analyze-your-web-frontend-errors-faster/#error-count-change) with the new ones.
+
 ## Table of contents
 - [Introduction](#Introduction)
 - [Timeframes](#Timeframes)
