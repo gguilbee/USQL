@@ -1,4 +1,4 @@
-# USQL
+# USQL (User Session Query Language)
 Dynatrace USQL (User Session Query Language) Documentation
 
 ## Introduction
