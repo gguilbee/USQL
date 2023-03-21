@@ -1,5 +1,6 @@
 # USQL - User Session Query Language
 Dynatrace USQL (User Session Query Language) Documentation
++ https://www.dynatrace.com/support/help/shortlink/usql-info
 
 ## Introduction
 
