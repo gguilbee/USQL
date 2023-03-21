@@ -255,9 +255,7 @@ If `TOP(<field>, n)` is selected and the results are grouped, but `<field>` is n
 ```
 SELECT TOP(country, 20), TOP(city, 3), COUNT(*) FROM usersession GROUP BY country
 ```
-```
-YEAR(datefield), MONTH(datefield), DAY(datefield), HOUR(datefield), MINUTE(datefield)
-```
+### YEAR(datefield), MONTH(datefield), DAY(datefield), HOUR(datefield), MINUTE(datefield)
 Returns the given element extracted from a datefield.
 ```
 YEAR: the 4-digit year
