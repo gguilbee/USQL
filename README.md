@@ -42,7 +42,7 @@ A query is built out of the following parts
 ```  
 SELECT <columns> FROM <table> WHERE <condition> GROUP BY <grouping> ORDER BY <ordering>
 ```
-The only mandatory elements are SELECT <columns> and FROM <table>
+The only mandatory elements are `SELECT <columns>` and `FROM <table>`
 
 #### Example
 ```
@@ -88,7 +88,7 @@ SELECT FUNNEL (<condition> AS <alias>, <condition>, ...) FROM <table> WHERE <con
 ```
 For funnel queries, you cannot use `SELECT *`, functions, or the keywords like `JSON` and also no `GROUP BY, ORDER BY or LIMIT` statements
 
-Limitation: Currently, GROUP BY, ORDER BY or LIMIT statements are not allowed in the funnels. These functionality might be added in the future. 
+*Limitation: Currently, `GROUP BY, ORDER BY or LIMIT` statements are not allowed in the funnels. These functionality might be added in the future.* 
 
 #### Example
 ```
