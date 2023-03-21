@@ -13,6 +13,20 @@ Dynatrace USQL (User Session Query Language) Documentation
     - [GROUP BY &lt;condition&gt;](#group-by-grouping)
     - [LIMIT &lt;condition&gt;](#limit-limit)
     - [ORDER BY &lt;ordering&gt;](#order-by-ordering)
+- [Functions](#functions)
+    - [MIN(field)](#min(field))
+    - MAX(field)
+    - AVG(field)
+    - MEDIAN(field)
+    - PERCENTILE(field, percentileValue)
+    - SUM(field)
+    - COUNT(field), COUNT(*), COUNT(DISTINCT field)
+    - TOP(field, n)
+    - YEAR(datefield), MONTH(datefield), DAY(datefield), HOUR(datefield), MINUTE(datefield)
+    - DATETIME(datefield [, format [, interval]])
+    - CONDITION(function, condition) 
+    - KEYS(customProperty) 
+    - Advanced Function Syntax: FILTER clauses
     
 ## Introduction
 
