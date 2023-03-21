@@ -1,6 +1,10 @@
 # USQL
 Dynatrace USQL (User Session Query Language) Documentation
 
+## Introduction
+
+Dynatrace captures detailed user session data each time a user interacts with your monitored application. This data includes all user actions and high level performance data. Using either the Dynatrace API or Dynatrace User Sessions Query Language (USQL), you can easily run powerful queries, segmentations, and aggregations on this captured data. To assist you, this topic provides detail about keywords and functions, syntax, working with Real User Monitoring tables, automated queries, and more.
+
 ## Table of contents
 - [Introduction](#Introduction)
 - [Timeframes](#Timeframes)
@@ -27,10 +31,6 @@ Dynatrace USQL (User Session Query Language) Documentation
     - [CONDITION(function, condition)](#conditionfunction-condition)
     - [KEYS(customProperty)](#keycustomproperty)
     - [Advanced Function Syntax: FILTER clauses](#advanced-function-syntax-filter-clauses)
-    
-## Introduction
-
-Dynatrace captures detailed user session data each time a user interacts with your monitored application. This data includes all user actions and high level performance data. Using either the Dynatrace API or Dynatrace User Sessions Query Language (USQL), you can easily run powerful queries, segmentations, and aggregations on this captured data. To assist you, this topic provides detail about keywords and functions, syntax, working with Real User Monitoring tables, automated queries, and more.
 
 ## Timeframes
 
