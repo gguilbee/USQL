@@ -179,3 +179,47 @@ FROM usersession where duration < 2000
 GROUP BY startTime
 ```
 We will try to support stating `"GROUP BY day(startTime)"` as well.
+
+## Functions
+
+Functions extract and modify data. Each function will return its values as one column. The name of this column can be specified with the "AS alias" syntax.
+For more information on the concepts of functions, visit the "technical details" section.
+
+### MIN(field)
+Queries the minimum value of a numeric or date field.
+#### Example
+```
+SELECT MIN(duration), MAX(duration), AVG(duration), MEDIAN(duration) FROM usersession
+```
+### MAX(field)
+Queries the maximum value of a numeric or date field.
+
+#### Example
+```
+SELECT MIN(duration), MAX(duration), AVG(duration), MEDIAN(duration) FROM usersession
+```
+### AVG(field)
+Queries the average value of a numeric or date field. May be NaN if the field is always null.
+#### Example
+```
+SELECT MIN(duration), MAX(duration), AVG(duration), MEDIAN(duration) FROM usersession
+```
+### MEDIAN(field)
+Queries the median value of a numeric or date field.
+#### Example
+```
+SELECT MIN(duration), MAX(duration), AVG(duration), MEDIAN(duration) FROM usersession
+```
+### PERCENTILE(field, percentileValue)
+Queries the percentile value of a numeric or date field.
+#### Example
+```
+SELECT MIN(duration), MAX(duration), AVG(duration), PERCENTILE(duration, 80.0) FROM usersession
+```
+### SUM(field)
+Computes the sum of a numerical field.
+#### Example
+```
+SELECT TOP(name, 20), SUM(duration) FROM useraction GROUP BY name
+```
+
