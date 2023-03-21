@@ -26,7 +26,7 @@ Dynatrace USQL (User Session Query Language) Documentation
     - [DATETIME(datefield [, format [, interval])](#datetimedatefield--format--interval)
     - [CONDITION(function, condition)](#conditionfunction-condition)
     - [KEYS(customProperty)](#keycustomproperty)
-    - [Advanced Function Syntax: FILTER clauses](#minfield)
+    - [Advanced Function Syntax: FILTER clauses](#advanced-function-syntax-filter-clauses)
     
 ## Introduction
 
@@ -373,7 +373,7 @@ SELECT KEYS(usersession.stringProperties) FROM useraction WHERE application = "r
 SELECT DISTINCT KEYS(stringProperties) FROM useraction where useraction.application = "easytravel-ang.lab.dynatrace.org" ORDER BY keys(stringProperties) 
 SELECT DISTINCT city, KEYS(stringproperties) FROM usersession
 ```
-#### Advanced Function Syntax: FILTER clauses
+### Advanced Function Syntax: FILTER clauses
 For functions that return numeric values, filters can be specified. Filters may be compared to a "HAVING" clause in SQL, or facets in other languages. These filters allow to select only certain results from the aggregation above.
 If you want a general filter (e.g. duration >3000), you should use a condition in the WHERE clause instead-but if you want to aggregate by ISP and check the ones with slow network times, you can use filters.
  
