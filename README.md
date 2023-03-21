@@ -118,3 +118,27 @@ condition: (condition AND condition) | (condition OR condition) | field IN(...) 
 SELECT country, city, browserfamily FROM usersession WHERE country = 'Albania' AND screenWidth > 1000
 SELECT top(country, 20), top(city, 20), TOP(duration, 10), avg(duration) AS average FROM usersession WHERE duration BETWEEN 1000 AND 2000
 ```
+
+### GROUP BY "grouping"
+Whenever fields are aggregated, a corresponding GROUP BY needs to be specified to indicate how the aggregation should be performed.
+
+  `grouping: <column>, ...`
+Limitation: Currently, functions are not allowed in the `GROUP BY` clause. For functions like `AVG`, this is obvious; for date functions this functionality might be added in the future. For the moment, e.g. if you want to group by month, you have to specify an alias.
+
+#### Example
+```
+SELECT city, count(*) FROM usersession GROUP BY city
+SELECT MONTH(starttime) as month, count(*) FROM usersession GROUP BY month
+```
+
+### LIMIT "limit"
+Allow to limit the number of results that are returned, e. g. this can be used for only selecting the top 10 results when it is combined with ordering.
+
+Some upper limit will be applied by the framework always in order to prevent overloading the system.
+
+If the `LIMIT` clause is missing, a default limit is applied (for the API, this is 50 at the moment) - Therefore, `LIMIT` can also be used to increase the number of results.
+
+#### Example
+```
+SELECT city, starttime FROM usersession ORDER BY starttime DESC LIMIT 10
+```
