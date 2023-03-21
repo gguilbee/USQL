@@ -5,10 +5,14 @@ Dynatrace USQL (User Session Query Language) Documentation
 - [Introduction](#Introduction)
 - [Timeframes](#Timeframes)
 - [Keywords and Conventions](#Keywords-and-Conventions)
-- Powerup List:
-    - [Disclaimer](#Disclaimer)
-    - [Tooltips](#Tooltips)
-    - [Colorize](#Colorize)
+    - [SELECT &lt;columns&gt;](#SELECT-<columns>)
+    - [DISTINCT](#DISTINCT)
+    - [FUNNEL](#FUNNEL)
+    - [FROM <table>]
+    - [WHERE <condition>]
+    - [GROUP BY <grouping>]
+    - [LIMIT <limit>]
+    - [ORDER BY <ordering>]
     
 ## Introduction
 
