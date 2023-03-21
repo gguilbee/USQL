@@ -80,7 +80,6 @@ is the same as
 ```
 SELECT country, city, COUNT(*) FROM usersession GROUP BY country, city
 ```
-
 ### FUNNEL
 The FUNNEL modifier allows to use a predefined funnel format for the query. It changes the syntax of the query to
 ```
@@ -108,14 +107,14 @@ Only one table can be specified. Tables for RUM data are currently usersession a
 SELECT country, city, browserfamily FROM usersession
 SELECT name, starttime, endtime, duration FROM useraction ORDER BY duration DESC
 ```
-
-WHERE <condition>
+### WHERE "condition"
 Multiple conditions can be combined using boolean logic, the right-hand side of conditions can only be a value, so no comparison between two fields is possible.
 "field" always refers to a field, so do not use functions or aliases here.
-
-
-
+```
 condition: (condition AND condition) | (condition OR condition) | field IN(...) | field IS <value> | field IS NULL | field = <value> | field > <value> | field < <value> | field <> <value> | field NOT <value> | field BETWEEN <value> AND <value> | ...
-Example
+```
+#### Example
+```
 SELECT country, city, browserfamily FROM usersession WHERE country = 'Albania' AND screenWidth > 1000
 SELECT top(country, 20), top(city, 20), TOP(duration, 10), avg(duration) AS average FROM usersession WHERE duration BETWEEN 1000 AND 2000
+```
