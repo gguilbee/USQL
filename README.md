@@ -302,7 +302,7 @@ or, alternatively: a number followed by d (days), h (hours), m (minutes) or s (s
 SELECT DATETIME(starttime, 'yyyy-MM') FROM usersession
 SELECT DISTINCT DATETIME(starttime, 'HH:mm', '5m'), count(*) FROM usersession
 ```
-Similar to the other date functions (YEAR, MONTH, DAY, HOUR, MINUTE) you can use these functions to format a result (even the result of another function like `MAX, MIN, AVG, CONDITION)` (Example 1), to create histograms (Example 2) or to retrieve a list of times where there are results; e.g. the days of a week when an application was used (Example 3).
+Similar to the other date functions `(YEAR, MONTH, DAY, HOUR, MINUTE)` you can use these functions to format a result (even the result of another function like `MAX, MIN, AVG, CONDITION)` (Example 1), to create histograms (Example 2) or to retrieve a list of times where there are results; e.g. the days of a week when an application was used (Example 3).
 
 #### Example
 ```
@@ -311,3 +311,32 @@ Similar to the other date functions (YEAR, MONTH, DAY, HOUR, MINUTE) you can use
 (3) SELECT application, DATETIME(starttime, "E") AS daysOfWeek FROM useraction GROUP BY application
 (4) SELECT DATETIME(CONDITION(MAX(startTime), WHERE name = "index.jsp")) as d FROM useraction 
 ```
+
+### CONDITION(function, condition) 
+Allows you to combine multiple functions with different conditions.
+
+allowed functions:
+```
+MIN()
+MAX()
+AVG()
+SUM()
+PERCENTILE()
+MEDIAN()
+COUNT()
+```
+condition :  similar to where clause
+```
+WHERE  (condition AND condition) | (condition OR condition) | field IN(...) | field IS <value> | field IS NULL | field = <value> | field > <value> | field < <value> | field <> <value> | field NOT <value> | field BETWEEN <value> AND <value> | ...
+```
+also allows `FILTER` clause to be used similar to the nested allowed functions
+
+#### Example
+```
+SELECT CONDITION(count(usersessionId), where userActionCount > 2 AND useraction.name = "search.jsp") from usersession
+SELECT CONDITION(SUM(usersession.duration), where name = "index.jsp") as c1, CONDITION(SUM(usersession.duration), where name = "search.jsp") as c2, CONDITION(SUM(usersession.duration), where name NOT is "index.jsp" AND name NOT is "search.jsp") as c3 from useraction where  (duration > 1000 OR usersession.userActionCount > 4)
+SELECT CONDITION(SUM(usersession.duration), where name = "index.jsp") as c1 from useraction where  (duration > 1000 OR usersession.userActionCount > 4) order by c1
+SELECT CONDITION(count(usersessionId), where userActionCount > 2 AND useraction.name = "search.jsp") FILTER > 1000, city from usersession group by city
+SELECT DATETIME(CONDITION(MIN(startTime ), WHERE useraction.application = "RUM Default Application" ), "yyyy-MM-dd" )  FROM usersession 
+```
+    
