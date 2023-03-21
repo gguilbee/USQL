@@ -4,7 +4,7 @@ Dynatrace USQL (User Session Query Language) Documentation
 ## Table of contents
 - [Introduction](#Introduction)
 - [Timeframes](#Timeframes)
-- [Keywords and conventions](#Keywords and conventions)
+- [Keywords and conventions](#Keywords-and-conventions)
 - Powerup List:
     - [Disclaimer](#Disclaimer)
     - [Tooltips](#Tooltips)
