@@ -23,7 +23,7 @@ Dynatrace USQL (User Session Query Language) Documentation
     - [COUNT(field), COUNT(*), COUNT(DISTINCT field)](#countfield-count-countdistinct-field)
     - [TOP(field, n)](#topfield-n)
     - [YEAR(datefield), MONTH(datefield), DAY(datefield), HOUR(datefield), MINUTE(datefield)](#yeardatefield-monthdatefield-daydatefield-hourdatefield-minutedatefield)
-    - [DATETIME(datefield [, format [, interval]])](#datetimedatefield)
+    - [DATETIME(datefield [, format [, interval])](#datetimedatefield--format--interval)
     - [CONDITION(function, condition)](#conditionfunction-condition)
     - [KEYS(customProperty)](#keycustomproperty)
     - [Advanced Function Syntax: FILTER clauses](#minfield)
