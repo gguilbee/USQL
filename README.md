@@ -65,4 +65,38 @@ SELECT DISTINCT country, city, useractioncount FROM usersession
 SELECT country, city, avg(duration) AS average FROM usersession GROUP BY country, city
 SELECT FUNNEL (useraction.name = "AppStart",useraction.name = "searchJourney", useraction.name = "bookJourney") FROM usersession
 ```
-    
+### DISTINCT
+The DISTINCT modifier will add implicit grouping.
+
+For distinct queries, you cannot use SELECT *,  or the JSON keyword.
+
+Grouping functions, date/time functions and field names in the columns will be added to the grouping, metric functions will be added ungrouped.
+
+#### Example
+```
+SELECT DISTINCT country, city, COUNT(*) FROM usersession
+```
+is the same as
+```
+SELECT country, city, COUNT(*) FROM usersession GROUP BY country, city
+```
+
+### FUNNEL
+The FUNNEL modifier allows to use a predefined funnel format for the query. It changes the syntax of the query to
+```
+SELECT FUNNEL (<condition> AS <alias>, <condition>, ...) FROM <table> WHERE <condition>
+```
+For funnel queries, you cannot use SELECT *, functions, or the keywords like JSON and also no GROUP BY, ORDER BY or LIMIT statements
+
+Limitation: Currently, GROUP BY, ORDER BY or LIMIT statements are not allowed in the funnels. These functionality might be added in the future. 
+
+#### Example
+```
+SELECT FUNNEL (useraction.name = "AppStart",useraction.name = "searchJourney", useraction.name = "bookJourney") FROM usersession
+```
+is the same as running 3 count(*) queries
+```
+SELECT COUNT(*) FROM usersession where useraction.name = "AppStart"
+SELECT COUNT(*) FROM usersession where useraction.name = "AppStart" AND useraction.name = "searchJourney"
+SELECT COUNT(*) FROM usersession where useraction.name = "AppStart" AND useraction.name = "searchJourney" AND useraction.name = "bookJourney"
+```
