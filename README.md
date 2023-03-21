@@ -339,4 +339,36 @@ SELECT CONDITION(SUM(usersession.duration), where name = "index.jsp") as c1 from
 SELECT CONDITION(count(usersessionId), where userActionCount > 2 AND useraction.name = "search.jsp") FILTER > 1000, city from usersession group by city
 SELECT DATETIME(CONDITION(MIN(startTime ), WHERE useraction.application = "RUM Default Application" ), "yyyy-MM-dd" )  FROM usersession 
 ```
-    
+### KEYS(customProperty) 
+Returns the list of keys of custom property defined in the argument.
+customProperty :  can be of one of the multi fields defined in USQL. For ex. stringProperties, longProperties, doubleProperties etc.
+#### Examples:
+```
+SELECT KEYS(stringProperties) FROM usersession WHERE application = "rum" AND city = "Linz" 
+SELECT KEYS(useraction.longProperties) FROM usersession WHERE application = "rum" AND city = "Linz" 
+
+SELECT KEYS(stringProperties) FROM useraction WHERE application = "rum" AND city = "Linz" 
+SELECT KEYS(usersession.stringProperties) FROM useraction WHERE application = "rum" AND city = "Linz" 
+```
+##### For fetching distinct keys use the following queries
+```
+SELECT DISTINCT KEYS(stringProperties) FROM useraction where useraction.application = "easytravel-ang.lab.dynatrace.org" ORDER BY keys(stringProperties) 
+SELECT DISTINCT city, KEYS(stringproperties) FROM usersession
+```
+##### Advanced Function Syntax: FILTER clauses
+For functions that return numeric values, filters can be specified. Filters may be compared to a "HAVING" clause in SQL, or facets in other languages. These filters allow to select only certain results from the aggregation above.
+If you want a general filter (e.g. duration >3000), you should use a condition in the WHERE clause instead-but if you want to aggregate by ISP and check the ones with slow network times, you can use filters.
+ 
+Syntax:
+Function FILTER operator value
+Function: one of the following: `MIN, MAX, AVG, SUM, MEDIAN, PERCENTILE, COUNT, CONDITION`
+`FILTER`: keyword
+operator: one of the following: `=, !=, <>, <, >, <=, >=`
+value: some numeric value
+
+#### Example
+```
+SELECT isp, AVG(useraction.networkTime) FILTER > 500 AS delay FROM usersession GROUP BY isp ORDER BY delay DESC
+SELECT CONDITION(count(usersessionId), where userActionCount > 2 AND useraction.name = "search.jsp") FILTER > 1000, city from usersession group by city
+````
+
