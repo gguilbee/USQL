@@ -50,7 +50,7 @@ SELECT ip, browserType, userId, city, AVG(userActionCount) AS "Average user acti
 FROM usersession 
 WHERE ip between '52.179.11.1' and '52.179.11.255'
 ```
-### SELECT "columns"
+### SELECT &lt;columns&gt;
 Selects one or more columns from the given data table or aggregation functions from the set of supported functions.
 ```
 columns: [DISTINCT|FUNNEL] <column>, <column>, ... | function(<parameter>) | <column> AS <alias> | JSON
@@ -99,7 +99,7 @@ SELECT COUNT(*) FROM usersession where useraction.name = "AppStart"
 SELECT COUNT(*) FROM usersession where useraction.name = "AppStart" AND useraction.name = "searchJourney"
 SELECT COUNT(*) FROM usersession where useraction.name = "AppStart" AND useraction.name = "searchJourney" AND useraction.name = "bookJourney"
 ```
-### FROM "table"
+### FROM &lt;table&gt;
 Only one table can be specified. Tables for RUM data are currently usersession and useraction.
 
 #### Example
@@ -107,7 +107,7 @@ Only one table can be specified. Tables for RUM data are currently usersession a
 SELECT country, city, browserfamily FROM usersession
 SELECT name, starttime, endtime, duration FROM useraction ORDER BY duration DESC
 ```
-### WHERE "condition"
+### WHERE &lt;condition&gt;
 Multiple conditions can be combined using boolean logic, the right-hand side of conditions can only be a value, so no comparison between two fields is possible.
 "field" always refers to a field, so do not use functions or aliases here.
 ```
@@ -119,7 +119,7 @@ SELECT country, city, browserfamily FROM usersession WHERE country = 'Albania' A
 SELECT top(country, 20), top(city, 20), TOP(duration, 10), avg(duration) AS average FROM usersession WHERE duration BETWEEN 1000 AND 2000
 ```
 
-### GROUP BY "grouping"
+### GROUP BY &lt;grouping&gt;
 Whenever fields are aggregated, a corresponding GROUP BY needs to be specified to indicate how the aggregation should be performed.
 
   `grouping: <column>, ...`
@@ -131,7 +131,7 @@ SELECT city, count(*) FROM usersession GROUP BY city
 SELECT MONTH(starttime) as month, count(*) FROM usersession GROUP BY month
 ```
 
-### LIMIT "limit"
+### LIMIT &lt;limit&gt;
 Allow to limit the number of results that are returned, e. g. this can be used for only selecting the top 10 results when it is combined with ordering.
 
 Some upper limit will be applied by the framework always in order to prevent overloading the system.
