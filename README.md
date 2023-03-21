@@ -355,7 +355,7 @@ SELECT KEYS(usersession.stringProperties) FROM useraction WHERE application = "r
 SELECT DISTINCT KEYS(stringProperties) FROM useraction where useraction.application = "easytravel-ang.lab.dynatrace.org" ORDER BY keys(stringProperties) 
 SELECT DISTINCT city, KEYS(stringproperties) FROM usersession
 ```
-##### Advanced Function Syntax: FILTER clauses
+#### Advanced Function Syntax: FILTER clauses
 For functions that return numeric values, filters can be specified. Filters may be compared to a "HAVING" clause in SQL, or facets in other languages. These filters allow to select only certain results from the aggregation above.
 If you want a general filter (e.g. duration >3000), you should use a condition in the WHERE clause instead-but if you want to aggregate by ISP and check the ones with slow network times, you can use filters.
  
@@ -371,4 +371,22 @@ value: some numeric value
 SELECT isp, AVG(useraction.networkTime) FILTER > 500 AS delay FROM usersession GROUP BY isp ORDER BY delay DESC
 SELECT CONDITION(count(usersessionId), where userActionCount > 2 AND useraction.name = "search.jsp") FILTER > 1000, city from usersession group by city
 ````
+## Mathematical Operation
 
+Currently we support simple forms of mathematical operations as part of queries like 
+
++ operations on Numbers 
++ operations on numeric  and dateTime fields (Since we store dateTime fields as long)
++ operations on some functions including YEAR, MONTH, DAY, HOUR, MINUTE 
+#### Syntax:
+`Number/NumericField/DateTimeField/Function OPERATOR Number/NumericField/DateTimeField/Function`
+Function: one of the following: `YEAR, MONTH, DAY, HOUR, MINUTE`
+
+Operator: one of the following: `+, -, *, /, , %, MOD`
+
+*Limitation: Currently, GROUP BY, ORDER BY or operations on functions except mentioned above are not allowed . These functionality might be added in the future.*
+
+#### Example
+```
+SELECT 7 + 80 * 100, duration + startTime, MONTH(startTime) - 1  FROM usersession
+```
