@@ -50,7 +50,7 @@ SELECT ip, browserType, userId, city, AVG(userActionCount) AS "Average user acti
 FROM usersession 
 WHERE ip between '52.179.11.1' and '52.179.11.255'
 ```
-### SELECT "<columns>"
+### SELECT "columns"
 Selects one or more columns from the given data table or aggregation functions from the set of supported functions.
 ```
 columns: [DISTINCT|FUNNEL] <column>, <column>, ... | function(<parameter>) | <column> AS <alias> | JSON
