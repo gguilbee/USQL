@@ -273,4 +273,41 @@ You may use this to display data of single user session results (Example 1), but
 (3) SELECT application, HOUR(starttime) AS hoursOfDay FROM useraction GROUP BY application
 (4) SELECT application, DATETIME(MAX(starttime)) AS LastUsedTime FROM useraction GROUP BY application
 ```
-    
+### DATETIME(datefield [, format [, interval]])
+Allows to format the selected datefield with the given format-string.
+
+Default format is `yyyy-MM-dd HH:mm`
+
+allowed letters within the format-string:
+```
+y: year-of-era
+u: year
+M: month
+d: day of month
+H: hour (0-23)
+h: hour (1-12)
+m: minute
+s: second
+E: day of week (Mon-Sun)
+e: day of week (1-7,  1 for Sunday, 2 for Monday, etc.)
+c: localized day of week (For Wednesday (English Locale): c → 4, ccc → Wed, cccc → Wednesday, German Locale: ccc → Mi, cccc → Mittwoch)
+```
+allowed values for the interval-string:
+```
+year|month|week|day|hour|minute|second
+or, alternatively: a number followed by d (days), h (hours), m (minutes) or s (seconds); e.g.: 7d
+```
+#### Example
+```
+SELECT DATETIME(starttime, 'yyyy-MM') FROM usersession
+SELECT DISTINCT DATETIME(starttime, 'HH:mm', '5m'), count(*) FROM usersession
+```
+Similar to the other date functions (YEAR, MONTH, DAY, HOUR, MINUTE) you can use these functions to format a result (even the result of another function like `MAX, MIN, AVG, CONDITION)` (Example 1), to create histograms (Example 2) or to retrieve a list of times where there are results; e.g. the days of a week when an application was used (Example 3).
+
+#### Example
+```
+(1) SELECT application, DATETIME(MAX(starttime)) AS LastUsedTime FROM useraction GROUP BY application
+(2) SELECT DATETIME(starttime, "HH") as hourOfDay, COUNT(*) FROM usersession GROUP BY hourOfDay
+(3) SELECT application, DATETIME(starttime, "E") AS daysOfWeek FROM useraction GROUP BY application
+(4) SELECT DATETIME(CONDITION(MAX(startTime), WHERE name = "index.jsp")) as d FROM useraction 
+```
