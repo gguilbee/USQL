@@ -380,6 +380,7 @@ Currently we support simple forms of mathematical operations as part of queries 
 + operations on some functions including YEAR, MONTH, DAY, HOUR, MINUTE 
 #### Syntax:
 `Number/NumericField/DateTimeField/Function OPERATOR Number/NumericField/DateTimeField/Function`
+
 Function: one of the following: `YEAR, MONTH, DAY, HOUR, MINUTE`
 
 Operator: one of the following: `+, -, *, /, , %, MOD`
@@ -390,3 +391,41 @@ Operator: one of the following: `+, -, *, /, , %, MOD`
 ```
 SELECT 7 + 80 * 100, duration + startTime, MONTH(startTime) - 1  FROM usersession
 ```
+## Conditions
+all conditions start with an identifier; i.e. a field name, and they are compared against some value. It is not possible to compare two fields with each other.
+Be aware that quoted text is case sensitive!
+
+### Basic Operators
+Basic operators for comparison are `=, !=, <>, <, >, <=, >=, IS, IS NOT`. `(=` and `IS` are equivalent for checking equality; `!=` and `<>` and `IS NOT` are equivalent for non equals).
+You can also compare against `NULL` to check whether a value is present or not.
+#### Example
+```
+SELECT userId FROM usersession WHERE userActionCount > 3
+```
+### Ranges
+Ranges are handled by keywords: `BETWEEN <lowerLimit> AND <upperLimit>`.
+
+This would be equivalent to `"WHERE <field> > <lowerLimit> AND <field> < <upperLimit>"`
+
+#### Example
+```
+SELECT DISTINCT ip FROM usersession WHERE ip BETWEEN "192.168.0.0" AND "192.168.255.255" 
+```
+
+### Sets
+To have a shorter version of `"WHERE <field> = val1 OR <field> = val2 OR <field> = val3"`, you can use the `IN` keyword.
+
+#### Example
+```
+SELECT userId FROM usersession WHERE city IN ("New York", "San Francisco")
+```
+
+### String conditions - STARTSWITH
+It checks whether a String or enum field starts with some given text.
+
+#### Example
+```
+SELECT city FROM usersession WHERE userId STARTSWITH "dynatrace_"
+```
+    
+    
