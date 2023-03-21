@@ -52,13 +52,17 @@ WHERE ip between '52.179.11.1' and '52.179.11.255'
 ```
 ### SELECT <columns>
 Selects one or more columns from the given data table or aggregation functions from the set of supported functions.
-
+```
 columns: [DISTINCT|FUNNEL] <column>, <column>, ... | function(<parameter>) | <column> AS <alias> | JSON
+```
 The modifiers DISTINCT and FUNNEL change the way the columns are interpreted and what values will be allowed for the columns.
 Be aware that the FUNNEL modifier also requires additional parenthesis.
 
 ### Example
+```
 SELECT country, city, browserfamily FROM usersession
 SELECT DISTINCT country, city, useractioncount FROM usersession
 SELECT country, city, avg(duration) AS average FROM usersession GROUP BY country, city
 SELECT FUNNEL (useraction.name = "AppStart",useraction.name = "searchJourney", useraction.name = "bookJourney") FROM usersession
+```
+    
